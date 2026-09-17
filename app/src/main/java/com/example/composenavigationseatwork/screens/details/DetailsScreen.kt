@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DetailsScreen(onBack: () -> Unit) {
+fun DetailsScreen(studentId : String?, name : String?, course: String?, year: String?, onBack: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -25,16 +25,16 @@ fun DetailsScreen(onBack: () -> Unit) {
             style = MaterialTheme.typography.headlineLarge
         )
         Text(
-            text = "Student ID: 1001"
+            text = "Student ID: $studentId"
         )
         Text(
-            text = "Name: Juan Dela Cruz"
+            text = "Name: $name"
         )
         Text(
-            text = "Course: BS Computer Engineering"
+            text = "Course: $course"
         )
         Text(
-            text = "Year: 4"
+            text = "Year: $year"
         )
         Button(
             onClick = onBack
@@ -47,5 +47,5 @@ fun DetailsScreen(onBack: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun DetailsScreenPreview() {
-    DetailsScreen(onBack = {})
+    DetailsScreen("1001", "Kurt Justine Sarmiento", "BS CpE", "4", onBack = {})
 }

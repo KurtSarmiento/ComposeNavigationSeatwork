@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 @Composable
-fun HomeScreen(onNavigate: () -> Unit) {
+fun HomeScreen(onNavigate: (studentId : String, name : String, course: String, year : String) -> Unit) {
     var loginAttempts by remember {
         mutableIntStateOf(0)
     }
@@ -103,7 +103,7 @@ fun HomeScreen(onNavigate: () -> Unit) {
                     errorMessage = "Year Level is required"
                 } else {
                     errorMessage = ""
-                    onNavigate()
+                    onNavigate(studentId, name, course, year)
                 }
             }
         ) {
@@ -112,8 +112,8 @@ fun HomeScreen(onNavigate: () -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    HomeScreen(onNavigate = {})
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun HomeScreenPreview() {
+//    HomeScreen(onNavigate = {})
+//}
