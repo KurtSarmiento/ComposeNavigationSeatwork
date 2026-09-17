@@ -24,18 +24,22 @@ fun HomeScreen(onNavigate: () -> Unit) {
     var loginAttempts by remember {
         mutableIntStateOf(0)
     }
-    var studentId by remember{
-        mutableStateOf("1001")
+    var studentId by remember {
+        mutableStateOf("")
     }
-    var name by remember{
-        mutableStateOf("Juan Dela Cruz")
+    var name by remember {
+        mutableStateOf("")
     }
-    var course by remember{
-        mutableStateOf("BS Computer Engineering")
+    var course by remember {
+        mutableStateOf("")
     }
-    var year by remember{
-        mutableStateOf("4")
+    var year by remember {
+        mutableStateOf("")
     }
+    var errorMessage by remember {
+        mutableStateOf("")
+    }
+
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,28 +52,37 @@ fun HomeScreen(onNavigate: () -> Unit) {
         )
         OutlinedTextField(
             value = studentId,
-            onValueChange = {studentId = it},
-            label = {Text("Student ID:")},
+            onValueChange = { studentId = it },
+            label = { Text("Student ID:") },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = name,
-            onValueChange = {name = it},
-            label = {Text("Name:")},
+            onValueChange = { name = it },
+            label = { Text("Name:") },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = course,
-            onValueChange = {course = it},
-            label = {Text("Course:")},
+            onValueChange = { course = it },
+            label = { Text("Course:") },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = year,
-            onValueChange = {year = it},
-            label = {Text("Year Level:")},
+            onValueChange = { year = it },
+            label = { Text("Year Level:") },
             modifier = Modifier.fillMaxWidth()
         )
+
+        if (errorMessage.isNotEmpty()) {
+            Text(
+                text = errorMessage,
+                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
+
         Text(
             text = "Login Attempts: $loginAttempts"
         )
@@ -79,7 +92,20 @@ fun HomeScreen(onNavigate: () -> Unit) {
             Text("Add Attempt")
         }
         Button(
-            onClick = onNavigate
+            onClick = {
+                if (studentId.isBlank()) {
+                    errorMessage = "Student ID is required."
+                } else if (name.isBlank()) {
+                    errorMessage = "Name is required."
+                } else if (course.isBlank()) {
+                    errorMessage = "Course is required."
+                } else if (year.isBlank()) {
+                    errorMessage = "Year Level is required"
+                } else {
+                    errorMessage = ""
+                    onNavigate()
+                }
+            }
         ) {
             Text("View Details")
         }
