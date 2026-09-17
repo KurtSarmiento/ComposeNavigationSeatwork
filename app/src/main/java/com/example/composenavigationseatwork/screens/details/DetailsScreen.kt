@@ -57,6 +57,11 @@ fun DetailsScreen(studentId : String?, name : String?, course: String?, year: St
         Button(
             onClick = onBack
         ) {
+            Text("Edit Information")
+        }
+        Button(
+            onClick = onBack
+        ) {
             Text("Back")
         }
     }
