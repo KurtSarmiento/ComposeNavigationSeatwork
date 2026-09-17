@@ -21,7 +21,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 @Composable
@@ -83,6 +82,11 @@ fun HomeScreen(onNavigate: (studentId : String, name : String, course: String, y
             onClick = { loginAttempts++ }
         ) {
             Text("Add Attempt")
+        }
+        Button(
+            onClick = { loginAttempts=0; studentId = ""; name = ""; course = ""; year = "" }
+        ) {
+            Text("Clear")
         }
         Button(
             onClick = {
