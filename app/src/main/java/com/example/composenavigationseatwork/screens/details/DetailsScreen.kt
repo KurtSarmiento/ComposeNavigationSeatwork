@@ -2,9 +2,14 @@ package com.example.composenavigationseatwork.screens.details
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +20,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DetailsScreen(studentId : String?, name : String?, course: String?, year: String?, onBack: () -> Unit) {
+
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -24,18 +30,30 @@ fun DetailsScreen(studentId : String?, name : String?, course: String?, year: St
             text = "Student Details",
             style = MaterialTheme.typography.headlineLarge
         )
-        Text(
-            text = "Student ID: $studentId"
-        )
-        Text(
-            text = "Name: $name"
-        )
-        Text(
-            text = "Course: $course"
-        )
-        Text(
-            text = "Year: $year"
-        )
+
+        ElevatedCard(
+            modifier = Modifier.padding(4.dp).fillMaxWidth(),
+            elevation = CardDefaults.cardElevation(
+                defaultElevation = 6.dp
+            )) {
+            Column(
+                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text("Student Id:")
+                Text("$studentId")
+                Spacer(Modifier.height(4.dp))
+                Text("Name:")
+                Text("$name")
+                Spacer(Modifier.height(4.dp))
+                Text("Course:")
+                Text("$course")
+                Spacer(Modifier.height(4.dp))
+                Text("Year Level:")
+                Text("$year")
+            }
+        }
         Button(
             onClick = onBack
         ) {
