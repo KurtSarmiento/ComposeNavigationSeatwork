@@ -12,6 +12,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,6 +38,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier){
+    var loginAttempts by remember {
+        mutableIntStateOf(0)
+    }
     Column(
         modifier = modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -51,6 +58,14 @@ fun HomeScreen(modifier: Modifier = Modifier){
         Text(
             text = "Year: 4"
         )
+        Text(
+            text = "Login Attempts: $loginAttempts"
+        )
+        Button(
+            onClick = {loginAttempts++}
+        ) {
+            Text("Add Attempt")
+        }
         Button(
             onClick = {}
         ) {
